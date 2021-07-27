@@ -3,7 +3,7 @@ var tickets_text = []
 
 var newDom = function(ticket) {
     return $(`                    
-<div class="col-4 my-2">
+<div class="col-12 col-md-6 col-xl-4 my-2">
 <div class="card ticket m-1">
     <div class="card-body">
         <div class="row text-center">
