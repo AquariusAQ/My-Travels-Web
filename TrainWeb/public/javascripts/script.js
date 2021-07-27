@@ -1,7 +1,9 @@
 var tickets = []
 var tickets_text = []
+var exhibitions = []
+var exhibitions_text = []
 
-var newDom = function(ticket) {
+var newTicketDom = function(ticket) {
     return $(`                    
 <div class="col-12 col-md-6 col-xl-4 my-2">
 <div class="card ticket m-1">
@@ -31,7 +33,7 @@ var newDom = function(ticket) {
             <p class="card-text col-4 my-0 p-0"><small>` + ticket.des_py + `</small></p>
         </div>
         <div class="row text-center">
-            <p class="card-text card-text col-4 my-0 p-0">` + ticket.year + `<small>年</small>` + ticket.month + `<small>月</small>` + ticket.day + `<small>日</small></p>
+            <p class="card-text card-text col-4 my-0 p-0">` + ticket.year + `<small>年</small>` + (ticket.month < 10 ? "0"+ticket.month : ticket.month) + `<small>月</small>` + (ticket.day < 10 ? "0"+ticket.day : ticket.day) + `<small>日</small></p>
             <p class="card-text card-text col-4 my-0 p-0">` + ticket.time + `<small>开</small></p>
             <p class="card-text card-text col-4 my-0 p-0">` + ticket.seat + `</p>
         </div>
@@ -49,19 +51,69 @@ var newDom = function(ticket) {
 </div>`)
 }
 
+var newExhibition = function(exhibition) {
+    var dom = $(`
+<div class="col-12 col-lg-6 my-2">
+<div class="card exhibition m-1">
+    <div class="card-body">
+        <h4 class="card-title">` + exhibition.exhibition + `<small>&nbsp;&nbsp;&nbsp;` + exhibition.name + `</small></h4>
+        <table class="table">
+            <tbody>
+              <tr class="table-info">
+                <td>` + exhibition.city + `</td>
+                <td>` + exhibition.time + `</td>
+                <td>` + exhibition.label + `</td>
+              </tr>
+
+            </tbody>
+          </table>
+    </div>
+</div>
+</div>
+    `);
+    exhibition.activity.forEach(element => {
+        new_dom = $(`
+            <tr class="table-success">
+                <td>` + element.day + `</td>
+                <td>` + element.type + `</td>
+                <td>` + element.cos + `</td>
+            </tr>
+        `)
+        dom.find("tbody").append(new_dom);
+    });
+    return dom;
+}
+
 $(document).ready(function() {
+    $('#nav-main').click(function() {
+        $('html,body').animate({ scrollTop: $("#main").offset().top}, 200);
+    });
+    $('#nav-exhibitions').click(function() {
+        $('html,body').animate({ scrollTop: $("#exhibitions").offset().top}, 200);
+    });
     $('#nav-tickets').click(function() {
         $('html,body').animate({ scrollTop: $("#tickets").offset().top}, 200);
+    });
+});
+
+$(document).ready(function () {
+    $.get("/process_exhibitions", function(data, status) {
+        exhibitions = JSON.parse(data);
+        fix_exhibitions_text();
+        for (let index = exhibitions_text.length - 1; index >= 0; index--) {
+            const element = exhibitions_text[index];
+            $('#exhibition-row').append(newExhibition(element));
+        }
     });
 });
 
 $(document).ready(function() {
     $.get("/process_tickets", function(data, status) {
         tickets = JSON.parse(data);
-        fix_text();
+        fix_tickets_text();
         for (let index = tickets_text.length - 1; index >= 0; index--) {
             const element = tickets_text[index];
-            $('#ticker-row-1').append(newDom(element));
+            $('#ticket-row').append(newTicketDom(element));
         }
     });
 
@@ -73,9 +125,22 @@ $(document).ready(function() {
       }
       
     Vue.createApp(app).mount('#ticker-list');*/
-})
+});
 
-function fix_text() {
+function fix_exhibitions_text() {
+    exhibitions.forEach(element => {
+        new_text = {};
+        new_text.exhibition = element.exhibition;
+        new_text.name = element.name;
+        new_text.city = element.city;
+        new_text.time = element.time;
+        new_text.label = element.label;
+        new_text.activity = element.activity;
+        exhibitions_text.push(new_text);
+    });
+}
+
+function fix_tickets_text() {
     tickets.forEach(element => {
         new_text = {};
         if (element.dep.length == 2) {

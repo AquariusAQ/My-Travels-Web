@@ -24,4 +24,16 @@ router.get('/process_tickets', function(req, res, next) {
   })
 })
 
+router.get('/process_exhibitions', function(req, res, next) {
+  var file = path.join(__dirname, '../data/exhibition.json');
+  fs.readFile(file, 'utf-8', function(err, data) {
+    if (err) {
+      console.log('文件读取失败：' + file);
+    } else {
+      res.send(data);
+    }
+  })
+})
+
+
 module.exports = router;
