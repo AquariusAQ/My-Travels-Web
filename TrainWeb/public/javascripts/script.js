@@ -3,6 +3,39 @@ var tickets_text = []
 var exhibitions = []
 var exhibitions_text = []
 
+var newExhibition = function(exhibition) {
+    var dom = $(`
+<div class="col-12 col-lg-6 my-2">
+<div class="card exhibition m-1">
+    <div class="card-body">
+        <h4 class="card-title">` + exhibition.exhibition + `<small>&nbsp;&nbsp;&nbsp;` + exhibition.name + `</small></h4>
+        <table class="table">
+            <tbody>
+              <tr class="table-info">
+                <td>` + exhibition.city + `</td>
+                <td>` + exhibition.time + `</td>
+                <td>` + exhibition.label + `</td>
+              </tr>
+
+            </tbody>
+          </table>
+    </div>
+</div>
+</div>
+    `);
+    exhibition.activity.forEach(element => {
+        new_dom = $(`
+            <tr class="table-success">
+                <td>` + element.day + `</td>
+                <td>` + element.type + `</td>
+                <td>` + element.cos + `</td>
+            </tr>
+        `)
+        dom.find("tbody").append(new_dom);
+    });
+    return dom;
+}
+
 var newTicketDom = function(ticket) {
     return $(`                    
 <div class="col-12 col-md-6 col-xl-4 my-2">
@@ -51,58 +84,20 @@ var newTicketDom = function(ticket) {
 </div>`)
 }
 
-var newExhibition = function(exhibition) {
-    var dom = $(`
-<div class="col-12 col-lg-6 my-2">
-<div class="card exhibition m-1">
-    <div class="card-body">
-        <h4 class="card-title">` + exhibition.exhibition + `<small>&nbsp;&nbsp;&nbsp;` + exhibition.name + `</small></h4>
-        <table class="table">
-            <tbody>
-              <tr class="table-info">
-                <td>` + exhibition.city + `</td>
-                <td>` + exhibition.time + `</td>
-                <td>` + exhibition.label + `</td>
-              </tr>
-
-            </tbody>
-          </table>
-    </div>
-</div>
-</div>
-    `);
-    exhibition.activity.forEach(element => {
-        new_dom = $(`
-            <tr class="table-success">
-                <td>` + element.day + `</td>
-                <td>` + element.type + `</td>
-                <td>` + element.cos + `</td>
-            </tr>
-        `)
-        dom.find("tbody").append(new_dom);
-    });
-    return dom;
-}
-
-$(document).ready(function() {
-    $('#nav-main').click(function() {
-        $('html,body').animate({ scrollTop: $("#main").offset().top}, 200);
-    });
-    $('#nav-exhibitions').click(function() {
-        $('html,body').animate({ scrollTop: $("#exhibitions").offset().top}, 200);
-    });
-    $('#nav-tickets').click(function() {
-        $('html,body').animate({ scrollTop: $("#tickets").offset().top}, 200);
-    });
-});
-
 $(document).ready(function () {
     $.get("/process_exhibitions", function(data, status) {
+        // var toggle = true;
         exhibitions = JSON.parse(data);
         fix_exhibitions_text();
         for (let index = exhibitions_text.length - 1; index >= 0; index--) {
             const element = exhibitions_text[index];
+            /*if (toggle) {
+                $('#exhibition-row-left').append(newExhibition(element));
+            } else {
+                $('#exhibition-row-right').append(newExhibition(element));
+            }*/
             $('#exhibition-row').append(newExhibition(element));
+            // toggle = !toggle;
         }
     });
 });
@@ -136,6 +131,9 @@ function fix_exhibitions_text() {
         new_text.time = element.time;
         new_text.label = element.label;
         new_text.activity = element.activity;
+        while (new_text.activity.length < 3) {
+            new_text.activity.push({"day": "　", "type": "", "cos": ""});
+        }
         exhibitions_text.push(new_text);
     });
 }
