@@ -102,3 +102,8 @@ $(document).ready(() =>{
     echarts.init(document.getElementById('main')).setOption(option);
     echarts.init(document.getElementById('main2')).setOption(option);
 });
+
+$(document).ready(() => {
+    $("#bga1").css('height', $("#bga1").width);
+    $("#bga2").css('height', $("#bga2").width);
+});
