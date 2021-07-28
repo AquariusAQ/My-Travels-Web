@@ -2,14 +2,27 @@ var express = require('express');
 var path = require('path');
 var fs = require('fs');
 var router = express.Router();
+var recordIP = require('../scripts/recordIP');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendFile("/public/index.html");
+  /*if (recordIP.start == false) {
+    recordIP.startRecordIP();
+  }
+  recordIP.recordIP(req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0]);*/
+  res.sendFile(path.join(__dirname, '../public/mainpage.html'));
+});
+
+router.get('/maimai', function(req, res, next) {
+  /*if (recordIP.start == false) {
+    recordIP.startRecordIP();
+  }
+  recordIP.recordIP(req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0]);*/
+  res.sendFile(path.join(__dirname, '../public/maimai/maimai.html'));
 });
 
 router.get('/favicon.ico', function(req, res, next) {
-  res.sendFile("/resource/favicon.ico");
+  res.sendFile(path.join(__dirname, '../resource/favicon.ico'));
 });
 
 
@@ -34,6 +47,5 @@ router.get('/process_exhibitions', function(req, res, next) {
     }
   })
 })
-
 
 module.exports = router;

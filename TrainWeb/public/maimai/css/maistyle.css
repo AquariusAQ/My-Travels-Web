@@ -1,0 +1,81 @@
+.col-center-block {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.card-header {
+    background-color: #ffff42!important;
+}
+
+.card-footer {
+    background-color: #151515!important;
+}
+
+.up-monitor-frame {
+    background-color: #b6e53c!important;
+}
+
+.up-monitor {
+    background-color: rgb(130, 180, 255)!important;
+}
+
+div.rating {
+    background-color: rgb(130, 180, 255);
+}
+
+p.rating {
+    color: white;
+    font-weight: 800;
+    font-size: small;
+}
+
+p.number {
+    color: rgb(0, 20, 87);
+    font-weight: 800;
+    font-size: medium;
+}
+
+p.song-name {
+    color: white;
+    font-weight: 500;
+    font-size: small;
+    background-color: black;
+}
+
+.title {
+    color: rgb(153, 0, 0);
+    font-weight: 800;
+}
+
+.bga { 
+    position: relative;
+    width: 80%; 
+    height: 240px; 
+    background: #ffff42;
+    border-radius:50%;
+}
+
+.main-text {
+    font-weight: 800;
+    color: white;
+    -webkit-text-stroke: #000 2px;
+}
+
+.left-tri {
+    width: 0; height: 0;
+    border-right: 20px solid #046499;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+
+.right-tri {
+    width: 0; height: 0;
+    border-left: 20px solid #c91413;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}

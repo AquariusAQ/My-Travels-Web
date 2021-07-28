@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>群舞萌</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/maistyle.css">
+
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.staticfile.org/vue/3.0.5/vue.global.js"></script>
+
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+
+    <script src="js/script.js"></script>
+</head>
+<body class="container">
+    <div class="row justify-content-center">
+        <div class="card col-center-block" style="width: 50%;">
+            <div class="card-header">
+                <br/>
+                <h4 class="title text-center m-0">舞萌DX</h4>
+            </div>
+            <div class="card-body p-0">
+                <div class="row m-0 p-0">
+                    <div class="col-5 mx-auto my-0 p-0">
+
+                        <div class="card">
+                            <div class="card up-monitor-frame px-3 py-1">
+                                <div class="card up-monitor m-0 p-0">
+                                    <!--<div class="row m-0 py-1">
+                                        <div class="col-8">
+                                            <div class="card">
+                                                123
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="card">
+                                                123
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <p class="card-text rating mt-1 mb-0 ml-2">流行乐曲排行榜</p>
+                                    <div class="card rating mx-1 mb-1">
+                                        <div class="row mx-2 mt-1 mb-0 p-0">
+                                            <p class="col-2 p-0 my-0 number">①</p>
+                                            <p class="card col-10 pl-2 my-1 song-name">封焔の135秒</p>
+                                        </div> 
+                                        <div class="row mx-2 my-0 p-0">
+                                            <p class="col-2 p-0 my-0 number">②</p>
+                                            <p class="card col-10 pl-2 my-1 song-name">CHOCOLATE BOMB!!!</p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="bga mx-auto mt-4"></div>
+                            <div id="main" class="pt-2" style="width: 100%; height: 300px; position: absolute;"></div>
+                            <div class="card-img-overlay">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <h1 class="card-title m-auto p-auto text-center main-text">舞萌</h1>
+                                <h2 class="card-text m-auto p-auto text-center main-text">2021</h2>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="col-1 mx-auto my-0 p-0">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="row mt-5 mx-0 p-0">
+                            <div class="col-6 mx-0 px-0">
+                                <div class="left-tri"></div>
+                            </div>
+                            <div class="col-6 mx-0 px-0">
+                                <div class="right-tri"></div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="mx-2 p-auto" style="background-color:rgb(124, 124, 124);">
+                            <button type="button" class="btn btn-dark my-4 ml-2 p-auto" onclick="alert('当前版本不支持互动，请等待后续版本！')"><br/></button>
+                        </div>
+                        
+                    </div>
+                    <div class="col-5 mx-auto my-0 p-0">
+
+                        <div class="card">
+                            <div class="card up-monitor-frame px-3 py-1">
+                                <div class="card up-monitor m-0 p-0">
+                                    <!--<div class="row m-0 py-1">
+                                        <div class="col-8">
+                                            <div class="card">
+                                                123
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="card">
+                                                123
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <p class="card-text rating mt-1 mb-0 ml-2">流行乐曲排行榜</p>
+                                    <div class="card rating mx-1 mb-1">
+                                        <div class="row mx-2 mt-1 mb-0 p-0">
+                                            <p class="col-2 p-0 my-0 number">①</p>
+                                            <p class="card col-10 pl-2 my-1 song-name">封焔の135秒</p>
+                                        </div> 
+                                        <div class="row mx-2 my-0 p-0">
+                                            <p class="col-2 p-0 my-0 number">②</p>
+                                            <p class="card col-10 pl-2 my-1 song-name">CHOCOLATE BOMB!!!</p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="bga mx-auto mt-4"></div>
+                            <div id="main2" class="pt-2" style="width: 100%; height: 300px; position: absolute;"></div>
+                            <div class="card-img-overlay">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <h1 class="card-title m-auto p-auto text-center main-text">舞萌</h1>
+                                <h2 class="card-text m-auto p-auto text-center main-text">2021</h2>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <p class="text-center" style="color: aliceblue;">群舞萌 v0.1</p>
+                <p class="text-center" style="color: aliceblue;">请使用足够宽的宽屏设备查看本页面</p>
+            </div>
+        </div>
+    </div>
+</body>
