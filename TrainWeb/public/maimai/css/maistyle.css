@@ -54,8 +54,8 @@ p.song-name {
 
 .bga { 
     position: relative;
-    width: 80%; 
-    height: 240px; 
+    width: 100px; 
+    height: 100px;
     background: #ffff42;
     border-radius:50%;
 }

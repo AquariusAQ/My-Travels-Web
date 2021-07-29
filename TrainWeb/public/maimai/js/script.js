@@ -1,6 +1,29 @@
 var option = {
+
+    grid: {
+        top: 0,
+        left: 0,
+        right: 0,
+        width:'auto',
+        height:'auto'
+    },
     
     color: ['#75ff93','#eaebe6'],
+
+    graphic: {
+        elements: [
+            {
+               type: 'image',
+               style: {
+                    image: "http://127.0.0.1:3000/maimai/img/default.png",
+                    width: 100,
+                    height: 100
+                },
+                left: 'center',
+                top: 'middle'    
+               }]
+             },
+
     series: [{
         startAngle: 346.2,
         label: {
@@ -44,7 +67,7 @@ var option = {
           },*/
             
         // silent: true, // 会完全禁止交互
-        radius: ['70%', '90%'], // 半径
+        radius: ['80%', '100%'], // 半径
         center: ['50%', '50%'], // 位置
         data: [{
                 value: 17.4,
@@ -98,12 +121,22 @@ var option = {
     }]
 };
 
+var option2 = option;
+
 $(document).ready(() =>{
+    //option['series'][0]['center'][1] = (150-($("#down1").height())/$("#down1").width()*100).toString() + '%';
+    option.graphic.elements[0].style.width = $('#main').width() * 0.95;
+    option.graphic.elements[0].style.height = $('#main').width() * 0.95;
+    
     echarts.init(document.getElementById('main')).setOption(option);
-    echarts.init(document.getElementById('main2')).setOption(option);
 });
 
 $(document).ready(() => {
-    $("#bga1").css('height', $("#bga1").width);
-    $("#bga2").css('height', $("#bga2").width);
+    echarts.init(document.getElementById('main2')).setOption(option2);
+    //$("#bga1").css('height', $("#bga1").width());
+    //$("#bga2").css('height', $("#bga2").width());
+    //$("#main").css('height', $("#main").width());
+    //$("#main2").css('height', $("#main2").width());
+    //myChart.resize();
+
 });
