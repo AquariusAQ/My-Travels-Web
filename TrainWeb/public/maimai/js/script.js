@@ -186,7 +186,7 @@ $(document).ready(() => {
             $.get("send_user?username="+username, (result) => {
                 if (result.code == 200) {
                     return;
-                } else if (result.code == 300) {
+                } else {
                     alert(result.text);
                 }
             });
@@ -198,6 +198,13 @@ $(document).ready(() => {
 
 var card = [];
 $(document).ready(() => {
+    $.get("process_user", (result) => {
+        new_card = JSON.parse(result);
+        if (card != new_card) {
+            card = new_card;
+            refresh_card();
+        }
+    });
     setInterval(() => {
         $.get("process_user", (result) => {
             new_card = JSON.parse(result);

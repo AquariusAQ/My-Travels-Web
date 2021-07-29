@@ -53,10 +53,12 @@ router.get('/maimai/send_user', function(req, res, next) {
   console.log(username);
   var st = add(username);
   // record.record({'username': username});
-  if (st) {
+  if (st == 200) {
     res.send({code: 200, text: "ok"});
-  } else {
-    res.send({code: 300, text: "卡片已满！"});
+  } else if (st == 900) {
+    res.send({code: 900, text: "卡片已满！"});
+  } else if (st == 901) {
+    res.send({code: 901, text: "已经在队伍中！"});
   }
 });
 
@@ -73,13 +75,16 @@ var queue = {
 
 add = (name) => {
   if (queue.data.length < queue.max) {
+    if ((queue.data.indexOf(name)) != -1) {
+      return 901;
+    }
     queue.data.push(name);
     if (!queue.hasTimer) {
       setTimer();
     }
-    return true;
+    return 200;
   } else {
-    return false;
+    return 900;
   }
 },
 
