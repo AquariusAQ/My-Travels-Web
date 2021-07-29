@@ -8,11 +8,22 @@
     transform: translateY(-50%);
 }
 
-.card-header {
+.col-side-block {
+    float: right;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.machine-header {
     background-color: #ffff42!important;
 }
 
-.card-footer {
+.machine-footer {
     background-color: #151515!important;
 }
 
@@ -78,4 +89,8 @@ p.song-name {
     border-left: 20px solid #c91413;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
+}
+
+.queue-card {
+    background-color: #75ff93;
 }

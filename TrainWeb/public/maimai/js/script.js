@@ -21,8 +21,37 @@ var option = {
                 },
                 left: 'center',
                 top: 'middle'    
-               }]
-             },
+            },
+            {
+                type:"text",
+                left:"center",
+                top:"35%",
+                style:{
+                    text:"舞萌",
+                    textAlign:"center",
+                    fill:"#000",
+                    fontSize:20,
+                    fontWeight:800,
+                    // stroke:"#000",
+                    // lineWidth:2,
+                }
+            },
+            {
+                type:"text",
+                left:"center",
+                top:"55%",
+                style:{
+                    text:"2021",
+                    textAlign:"center",
+                    fill:"#000",
+                    fontSize:20,
+                    fontWeight:800,
+                    // stroke:"#000",
+                    // lineWidth:2,
+                }
+            }
+        ]
+    },
 
     series: [{
         startAngle: 346.2,
@@ -125,18 +154,65 @@ var option2 = option;
 
 $(document).ready(() =>{
     //option['series'][0]['center'][1] = (150-($("#down1").height())/$("#down1").width()*100).toString() + '%';
-    option.graphic.elements[0].style.width = $('#main').width() * 0.95;
-    option.graphic.elements[0].style.height = $('#main').width() * 0.95;
+    var playSize = Math.min($('#main').width(), $('#main').height()); 
+    option.graphic.elements[0].style.width = playSize * 0.95;
+    option.graphic.elements[0].style.height = playSize * 0.95;
+    option.graphic.elements[0].style.image = "http://" + window.location.host + "/maimai/img/default.png";
+    option.graphic.elements[1].style.fontSize = playSize * 0.15;
+    option.graphic.elements[2].style.fontSize = playSize * 0.10;
     
     echarts.init(document.getElementById('main')).setOption(option);
+    echarts.init(document.getElementById('main2')).setOption(option2);
+    
+    /*var selectN = $("p.main-text")
+    for (var i = 0; i < selectN.length; i++) {
+        selectN.eq(i).css("font-size", $('#main').width() * 0.15);
+    }*/
 });
 
 $(document).ready(() => {
-    echarts.init(document.getElementById('main2')).setOption(option2);
-    //$("#bga1").css('height', $("#bga1").width());
-    //$("#bga2").css('height', $("#bga2").width());
-    //$("#main").css('height', $("#main").width());
-    //$("#main2").css('height', $("#main2").width());
-    //myChart.resize();
-
+    $(window).resize(function() {
+        option.graphic.elements[0].style.width = $('#main').width() * 0.95;
+        option.graphic.elements[0].style.height = $('#main').width() * 0.95;
+        myChart.resize();
+      });
 });
+
+$(document).ready(() => {
+    $('#inqueue').click(() => {
+        let username = $('#username').val();
+        var patt = /^[a-zA-Z0-9]+$/
+        if (patt.test(username) && username.length <= 8) {
+            $.get("send_user?username="+username, (result) => {
+                if (result.code == 200) {
+                    return;
+                } else if (result.code == 300) {
+                    alert(result.text);
+                }
+            });
+        } else {
+            alert("昵称必须为1~8位数字或字母！");
+        }
+    })
+});
+
+var card = [];
+$(document).ready(() => {
+    setInterval(() => {
+        $.get("process_user", (result) => {
+            new_card = JSON.parse(result);
+            if (card != new_card) {
+                card = new_card;
+                refresh_card();
+            }
+        });
+    }, 1000)
+});
+
+function refresh_card() {
+    $('#queue-list').empty();
+    card.forEach(element => {
+        let dom = $('<div class="card queue-card m-1"><div class="card-title text-center my-2 py-2">'+element+'</div></div>');
+        $('#queue-list').append(dom);
+    });
+}
