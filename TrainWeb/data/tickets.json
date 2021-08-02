@@ -718,5 +718,23 @@
         "up_text": "",
         "down_text": "仅供报销使用",
         "sell": "上海南"
+    },
+    {
+        "dep": "上海虹桥",
+        "train": "G1395",
+        "des": "南昌西",
+        "dep_py": "Shanghaihongqiao",
+        "des_py": "Nanchangxi",
+        "year": 2021,
+        "month": 8,
+        "day": 2,
+        "time": "18:28",
+        "seat": "11车08F号",
+        "price": "336.5",
+        "label": "",
+        "type": "二等座",
+        "up_text": "",
+        "down_text": "仅供报销使用",
+        "sell": ""
     }
 ]
